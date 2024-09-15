@@ -1,4 +1,5 @@
-import org.w3c.dom.ls.LSOutput;
+import StockExchange.Terminal;
+import StockExchange.User;
 
 import java.util.Scanner;
 
@@ -18,13 +19,21 @@ public class Main {
                     user.getBalance();
                     break;
                 case 2:
-
+                    terminal.getExchangeRates();
+                    break;
                 case 3:
-                    System.out.println("Введите валютную пару и сумму в формате: Валюта1 / Валюта 2");
+                    System.out.printf("%nВведите валюту, которую хотите обменять: ");
+                    String currencyFrom = in.next();
+                    System.out.print("Введите валюту, которую хотите получить: ");
+                    String currencyTo = in.next();
+                    System.out.printf("Введите количество %s к обмену: ", currencyFrom);
+                    float amountFrom = in.nextFloat();
+
+                    terminal.exchange(currencyFrom, currencyTo, amountFrom);
                 case 0:
                     break;
                 default:
-                    System.out.printf("Невалидный ввод, пожалуйста, введите число от 0 до 3%n%n");
+                    System.out.printf("Выбрана несуществующая опция. Пожалуйста, введите число от 0 до 3%n%n");
                     break;
             }
         } while (userSelection != 0);
